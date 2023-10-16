@@ -1,0 +1,41 @@
+micronaut:
+  application:
+    name: depservice
+
+logging:
+  levels:
+    io.micronaut.context.condition: TRACE
+
+datasources:
+  default:
+#    url: jdbc:mysql://localhost:3306/micronautguide?allowPublicKeyRetrieval=true&useSSL=false
+#    dialect: MYSQL
+#    driverClassName: com.mysql.cj.jdbc.Driver
+    driverClassName: org.sqlite.JDBC
+    url: jdbc:sqlite:./dependencies.db
+#    username: root
+#    password: 123456
+    schema-generate: CREATE_DROP
+    pooled: false  # Since it's recommended to pool connections for MySQL
+
+jpa:
+  default:
+    entity-scan:
+      packages: 'org.harmonic.models'
+    properties:
+      hibernate:
+        bytecode:
+          provider: none
+        hbm2ddl:
+          auto: validate
+        show_sql: false
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+      baseline-on-migrate: true
+      locations: classpath:db/migration
+      properties:
+        hibernate:
+          dialect: org.hibernate.spatial.dialect.sqlite.SQLiteDialect
