@@ -27,7 +27,7 @@ jpa:
         bytecode:
           provider: none
         hbm2ddl:
-          auto: validate
+          auto: update
         show_sql: false
 
 flyway:
