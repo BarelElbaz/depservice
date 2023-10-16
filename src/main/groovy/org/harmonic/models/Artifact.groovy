@@ -6,6 +6,9 @@ import jakarta.persistence.*
 @Table(name = "Artifacts")
 class Artifact {
 
+    @Id
+    Long id
+
     @Column(name = "src_pkg")
     String srcPkg
 
